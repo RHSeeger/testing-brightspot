@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Context cachingAllowed="false">
+    <Environment name="PRODUCTION" type="java.lang.Boolean" value="false" />
+
+    <!-- Database -->
+    <Environment name="dari/defaultDatabase" type="java.lang.String" value="testing-brightpot.local" />
+    <Environment name="dari/database/testing-brightpot.local/class" type="java.lang.String" value="com.psddev.dari.db.AggregateDatabase" />
+    <Environment name="dari/database/testing-brightpot.local/defaultDelegate" type="java.lang.String" value="sql" />
+
+    <!-- SQL via H2 -->
+    <Environment name="dari/database/testing-brightpot.local/delegate/sql/class" type="java.lang.String" value="com.psddev.dari.db.SqlDatabase" />
+    <Environment name="dari/database/testing-brightpot.local/delegate/sql/jdbcUrl" type="java.lang.String" value="jdbc:h2:file:../../../../data/h2/default" />
+    <Environment name="dari/database/testing-brightpot.local/delegate/sql/jdbcUser" type="java.lang.String" value="root" />
+    <Environment name="dari/database/testing-brightpot.local/delegate/sql/jdbcPassword" type="java.lang.String" value="" />
+
+    <!-- Solr -->
+    <Environment name="dari/database/testing-brightpot.local/delegate/solr/class" type="java.lang.String" value="com.psddev.dari.db.SolrDatabase" />
+    <Environment name="dari/database/testing-brightpot.local/delegate/solr/groups" type="java.lang.String" value="-* +cms.content.searchable" />
+    <Environment name="dari/database/testing-brightpot.local/delegate/solr/serverUrl" type="java.lang.String" value="http://localhost:8080/solr" />
+    <Environment name="dari/database/testing-brightpot.local/delegate/solr/readServerUrl" type="java.lang.String" value="http://localhost:8080/solr" />
+
+    <!-- Storage -->
+    <Environment name="dari/defaultStorage" type="java.lang.String" value="testing-brightpot.local" />
+    <Environment name="dari/storage/testing-brightpot.local/class" type="java.lang.String" value="com.psddev.dari.util.LocalStorageItem" />
+    <Environment name="dari/storage/testing-brightpot.local/baseUrl" type="java.lang.String" value="http://localhost:8080/storage" />
+    <Environment name="dari/storage/testing-brightpot.local/rootPath" type="java.lang.String" value="../../../../data/storage" />
+</Context>

@@ -1,0 +1,268 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
+        http://maven.apache.org/maven-v4_0_0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>com.psddev</groupId>
+        <artifactId>dari-parent</artifactId>
+        <version>2.4-SNAPSHOT</version>
+    </parent>
+
+    <groupId>com.sample</groupId>
+    <artifactId>testing-brightpot</artifactId>
+    <version>1.0.0-SNAPSHOT</version>
+    <packaging>war</packaging>
+
+    <name>com.sample: testing-brightpot</name>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.psddev</groupId>
+            <artifactId>cms-db</artifactId>
+            <version>2.4-SNAPSHOT</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.psddev</groupId>
+            <artifactId>cms-tool-ui</artifactId>
+            <version>2.4-SNAPSHOT</version>
+            <type>war</type>
+        </dependency>
+
+        <dependency>
+            <groupId>com.psddev</groupId>
+            <artifactId>dari-db</artifactId>
+            <version>2.4-SNAPSHOT</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.psddev</groupId>
+            <artifactId>dari-util</artifactId>
+            <version>2.4-SNAPSHOT</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.psddev</groupId>
+            <artifactId>dari-reloader-tomcat6</artifactId>
+            <version>2.4-SNAPSHOT</version>
+            <type>war</type>
+        </dependency>
+
+        <dependency>
+            <groupId>com.drewnoakes</groupId>
+            <artifactId>metadata-extractor</artifactId>
+            <version>2.4.0-beta-1</version>
+        </dependency>
+
+        <dependency>
+            <groupId>commons-fileupload</groupId>
+            <artifactId>commons-fileupload</artifactId>
+            <version>1.2.1</version>
+        </dependency>
+
+        <dependency>
+            <groupId>commons-io</groupId>
+            <artifactId>commons-io</artifactId>
+            <version>1.3.2</version>
+        </dependency>
+
+        <!-- Logging -->
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>1.6.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-jdk14</artifactId>
+            <version>1.6.0</version>
+        </dependency>
+
+        <!-- Database -->
+        <dependency>
+            <groupId>com.h2database</groupId>
+            <artifactId>h2</artifactId>
+            <version>1.3.166</version>
+        </dependency>
+
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>5.1.18</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.solr</groupId>
+            <artifactId>solr</artifactId>
+            <version>3.6.2</version>
+            <type>war</type>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.solr</groupId>
+            <artifactId>solr-solrj</artifactId>
+            <version>3.6.2</version>
+        </dependency>
+
+        <!-- Environmental -->
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>servlet-api</artifactId>
+            <version>2.5</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>javax.servlet.jsp</groupId>
+            <artifactId>jsp-api</artifactId>
+            <version>2.1</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <!-- JSTL -->
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>jstl</artifactId>
+            <version>1.1.2</version>
+        </dependency>
+
+        <dependency>
+            <groupId>taglibs</groupId>
+            <artifactId>standard</artifactId>
+            <version>1.1.2</version>
+        </dependency>
+
+        <dependency>
+            <groupId>javax.resource</groupId>
+            <artifactId>javax.resource-api</artifactId>
+            <version>1.7</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.ow2.jotm</groupId>
+            <artifactId>jotm-core</artifactId>
+            <version>2.3.1-M1</version>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.codehaus.cargo</groupId>
+                <artifactId>cargo-maven2-plugin</artifactId>
+                <version>1.2.4</version>
+                <configuration>
+                    <container>
+                        <containerId>tomcat7x</containerId>
+                        <zipUrlInstaller>
+                            <url>http://archive.apache.org/dist/tomcat/tomcat-7/v7.0.53/bin/apache-tomcat-7.0.53.zip</url>
+                            <downloadDir>${user.home}/.dari/cargo-downloads</downloadDir>
+                        </zipUrlInstaller>
+                    </container>
+                    <configuration>
+                        <configfiles>
+                            <configfile>
+                                <file>${project.basedir}/etc/tomcat-context.xml</file>
+                                <todir>conf</todir>
+                                <tofile>context.xml</tofile>
+                            </configfile>
+                            <configfile>
+                                <file>${project.basedir}/etc/tomcat-logging.properties</file>
+                                <todir>conf</todir>
+                                <tofile>logging.properties</tofile>
+                            </configfile>
+                            <configfile>
+                                <file>${project.basedir}/etc/tomcat-storage.xml</file>
+                                <todir>conf/Catalina/localhost</todir>
+                                <tofile>storage.xml</tofile>
+                            </configfile>
+                            <configfile>
+                                <file>${project.basedir}/etc/solr-schema.xml</file>
+                                <todir>solr/conf</todir>
+                                <tofile>schema.xml</tofile>
+                            </configfile>
+                            <configfile>
+                                <file>${project.basedir}/etc/solr-config.xml</file>
+                                <todir>solr/conf</todir>
+                                <tofile>solrconfig.xml</tofile>
+                            </configfile>
+                        </configfiles>
+                    </configuration>
+                    <deployables>
+                        <deployable>
+                            <properties>
+                                <context>/</context>
+                            </properties>
+                        </deployable>
+                        <deployable>
+                            <groupId>com.psddev</groupId>
+                            <artifactId>dari-reloader-tomcat6</artifactId>
+                            <type>war</type>
+                            <properties>
+                                <context>/reloader</context>
+                            </properties>
+                        </deployable>
+                        <deployable>
+                            <groupId>org.apache.solr</groupId>
+                            <artifactId>solr</artifactId>
+                            <type>war</type>
+                            <properties>
+                                <context>/solr</context>
+                            </properties>
+                        </deployable>
+                    </deployables>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-war-plugin</artifactId>
+                <configuration>
+                    <overlays>
+                        <overlay>
+                            <groupId>com.psddev</groupId>
+                            <artifactId>cms-tool-ui</artifactId>
+                            <targetPath>cms</targetPath>
+                        </overlay>
+                        <overlay>
+                            <groupId>com.psddev</groupId>
+                            <artifactId>dari-reloader-tomcat6</artifactId>
+                            <skip>true</skip>
+                        </overlay>
+                        <overlay>
+                            <groupId>org.apache.solr</groupId>
+                            <artifactId>solr</artifactId>
+                            <skip>true</skip>
+                        </overlay>
+                    </overlays>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+    <repositories>
+        <repository>
+            <id>public.psddev</id>
+            <url>http://public.psddev.com/maven</url>
+            <snapshots>
+                <updatePolicy>always</updatePolicy>
+            </snapshots>
+        </repository>
+    </repositories>
+
+    <pluginRepositories>
+        <pluginRepository>
+            <id>public.psddev</id>
+            <url>http://public.psddev.com/maven</url>
+            <snapshots>
+                <updatePolicy>always</updatePolicy>
+            </snapshots>
+        </pluginRepository>
+    </pluginRepositories>
+
+</project>
