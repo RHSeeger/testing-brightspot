@@ -22,7 +22,7 @@ public class RecordBased_Test {
 
     @BeforeClass
     public static void beforeClass() {
-        System.out.println("Running tests from class [" + Simple_Test.class.getName() + "]");
+        System.out.println("Running tests from class [" + RecordBased_Test.class.getName() + "]");
     }
 
     @AfterClass
