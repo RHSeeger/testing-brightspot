@@ -1,0 +1,42 @@
+import org.junit.Ignore;
+
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+
+@Ignore // We want junit to ignore this class, even though it has Test in the name
+public class TestUtils {
+    public static String loadSampleFile(String filename) throws IOException {
+        InputStream in = TestUtils.class.getClassLoader().getResourceAsStream(filename);
+        if(in == null) {
+            throw new FileNotFoundException("The resource file could not be found: " + filename);
+        }
+        return getStringFromInputStream(in);
+    }
+
+    private static String getStringFromInputStream(InputStream is) throws IOException {
+        BufferedReader br = null;
+        StringBuilder sb = new StringBuilder();
+
+        String line;
+        try {
+
+            br = new BufferedReader(new InputStreamReader(is));
+            while ((line = br.readLine()) != null) {
+                sb.append(line);
+            }
+        } finally {
+            if (br != null) {
+                try {
+                    br.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+
+        return sb.toString();
+    }
+}

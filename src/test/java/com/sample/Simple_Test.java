@@ -26,7 +26,7 @@ public class Simple_Test {
 
     @Before
     public void before() {
-        System.out.println("Running test [" + testName + "]");
+        System.out.println("Running test [" + testName.getMethodName() + "]");
     }
 
     @After
